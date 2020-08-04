@@ -9,13 +9,18 @@ class NewVisitorTest(unittest.TestCase) :
 
     def tearDown(self) :
         self.browser.quit()
+    def check_in_table(self, row_text, idtag) :
+        table = self.browser.find_element_by_id(idtag)
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
 
 
     def test_can_build_a_cv(self) :
         #goes to check out cv builder
         self.browser.get('http://localhost:8000')
         #notices title and header mention cv builder
-        self.assertIn('CVBuilder', self.browser.title)
+        self.assertIn('CV Builder', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1')
 
         #invited to enter name
@@ -38,6 +43,9 @@ class NewVisitorTest(unittest.TestCase) :
         submitpersonaldetails = self.browser.find_element_by_id('details')
         submitpersonaldetails.click()
         # when hits enter name, email and number are displayed
+        self.assertEqual(self.browser.find_element_by_id('namedis').text, 'James Bartlett')
+        self.assertEqual(self.browser.find_element_by_id('emaildis').text, 'james@gmail.com')
+        self.assertEqual(self.browser.find_element_by_id('numberdis').text, '111111111')
         #will need to decide how i want it displayed
         #Personal profile
 
@@ -49,7 +57,7 @@ class NewVisitorTest(unittest.TestCase) :
         submitprofile = self.browser.find_element_by_id('Profile')
         submitprofile.click()
         #Upon enter personal profile is displayed
-
+        self.assertEqual(self.browser.find_element_by_id('profiledis').text, 'Looking for work have a computer science degree and good teamwork skills')
         #Skills
         inputboxskills=self.browser.find_element_by_id('skill')
         self.assertEqual(self.browser.find_element_by_id('Skillsquestion').text, 'Enter a skill')
@@ -60,7 +68,7 @@ class NewVisitorTest(unittest.TestCase) :
         #Types Java
 
         # Upon enter java is displayed underskills
-
+        self.check_in_table('Java', 'skillstable')
         # Invited to enter another skill
         inputboxskills=self.browser.find_element_by_id('skill')
 
@@ -68,7 +76,8 @@ class NewVisitorTest(unittest.TestCase) :
         inputboxskills.send_keys('Teamwork')
         inputboxskills.send_keys(Keys.ENTER)
         # Upon enter both skills entries are displayed
-
+        self.check_in_table('Java', 'skillstable')
+        self.check_in_table('Teamwork', 'skillstable')
         #Achievments
 
         # Invited to enter an achievment
@@ -79,6 +88,7 @@ class NewVisitorTest(unittest.TestCase) :
         inputboxachievments.send_keys('1st place in hackathon')
         # Upon enter displays ahcivment
         inputboxachievments.send_keys(Keys.ENTER)
+        self.check_in_table('1st place in hackathon', 'achtable')
         # Invited to enter another achievent
         inputboxachievments=self.browser.find_element_by_id('achievment')
         #Types a levels
@@ -86,6 +96,9 @@ class NewVisitorTest(unittest.TestCase) :
 
         # upon enter displays both ahcivments
         inputboxachievments.send_keys(Keys.ENTER)
+        self.check_in_table('1st place in hackathon', 'achtable')
+
+        self.check_in_table('a levels', 'achtable')
         #Work experience
 
         # Invited to enter name of company
@@ -118,6 +131,10 @@ class NewVisitorTest(unittest.TestCase) :
         submitworkexp = self.browser.find_element_by_id('WorkExperience')
         submitworkexp.click()
         #Upon enter company, role, dates and job description are displayed
+        self.assertEqual(self.browser.find_element_by_id('jobtitled').text, "student ambassador")
+        self.assertEqual(self.browser.find_element_by_id('jobcomd').text, "University of Birmingham")
+        self.assertEqual(self.browser.find_element_by_id('jobdatesd').text, "01/01/2019-03/08/2020")
+        self.assertEqual(self.browser.find_element_by_id('jobdetailsd').text, "Responsible for showing students round building making them feel welcome and setting up events")
 
         #Education
 
@@ -148,6 +165,9 @@ class NewVisitorTest(unittest.TestCase) :
         # Upon enter school, dates and grades are displayed
         submiteducation=self.browser.find_element_by_id('EducationSubmit')
         submiteducation.click()
+        self.assertEqual(self.browser.find_element_by_id('schoold').text, "Woodhouse College")
+        self.assertEqual(self.browser.find_element_by_id('schooldatesd'), "01/09/2016-01/07/2018")
+        self.assertEqual(self.browser.find_element_by_id('schooldetailsd'), 'Maths A* Further Maths B Georgraphy A')
 
 	# def test_can_edit_a_cv(self) :
 

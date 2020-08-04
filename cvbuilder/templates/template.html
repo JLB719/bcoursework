@@ -13,14 +13,18 @@
       <p id="namequestion">Enter your full name</p>
 
       <input type="text" name="name" id="name">
+      {% csrf_token %}
       <br>
       <p id="emailquestion">Enter your email</p>
       <input type="email" name="email" id="email">
+      {% csrf_token %}
       <br>
       <p id="telquestion">Enter your telephone number</p>
       <input type="tel" name="number" id="number">
+      {% csrf_token %}
       <br>
       <input type="submit" value="Submit" id="details">
+      {% csrf_token %}
     </form>
   </div>
   <br>
@@ -30,8 +34,10 @@
       <p id="profquestion">Enter a personal profile</p>
 
       <textarea name="personalprof" id="personalprof" rows="8" cols="80"></textarea>
+      {% csrf_token %}
       <br>
       <input type="submit" value="Submit" id="Profile">
+      {% csrf_token %}
     </form>
   </div>
   <br>
@@ -40,8 +46,10 @@
     <form method="POST">
       <p id="Skillsquestion">Enter a skill</p>
       <input type="text" name="skill" id="skill" >
+      {% csrf_token %}
       <br>
       <input type="submit" value="Submit" id="Skills">
+      {% csrf_token %}
   </div>
   <br>
   <div class="Achievments">
@@ -49,8 +57,10 @@
     <form method="POST">
       <p id=Achievmentquestion>Enter an achievment</p>
       <input type="text" name="achievement" id="achievment">
+      {% csrf_token %}
       <br>
       <input type="submit" value="Submit" id="achievment">
+      {% csrf_token %}
   </div>
   <br>
   <div class="WorkExperience">
@@ -58,20 +68,25 @@
     <form method="POST">
       <p id="placeofworkq">Enter the place of work</p>
       <input type="text" name="placeofwork" id="placeofwork">
+      {% csrf_token %}
       <br>
       <p id="roleq">Enter the job role</p>
       <input type="text" name="role" id="role">
+      {% csrf_token %}
       <br>
       <p id="startdatewq">Enter the start date of the job</p>
       <input type="date" name="startdatew" id="startdatew">
+      {% csrf_token %}
       <br>
       <p id="enddatewq">Enter the date you finished the role</p>
       <input type="date" name="enddatew" id="enddatew">
+      {% csrf_token %}
       <br>
       <p id="jobdesq">Enter the job description details</p>
       <textarea rows="5" cols="60" name="description" id="description"></textarea><br>
+      {% csrf_token %}
       <input type="submit" value="Submit" id="WorkExperience">
-
+      {% csrf_token %}
   </div>
   <br>
   <div class="Education">
@@ -79,18 +94,72 @@
     <form method="POST">
       <p id="schoolq">Enter the name of the school</p>
       <input type="text" name="school" id="school">
+      {% csrf_token %}
       <br>
       <p id="startdatesq">Enter the date you started at the school</p>
       <input type="date" name="startdates" id="startdates">
+      {% csrf_token %}
       <br>
       <p id="enddatesq">Enter the date you finished at the school</p>
       <input type="date" name="enddates" id="enddates">
+      {% csrf_token %}
       <br>
       <p id="gradesq">Enter grades obtained</p>
       <textarea name="grades" id="grades" rows="8" cols="60"></textarea>
+      {% csrf_token %}
       <br>
-      <input type="submit" value="Submit" id="EducationSubmit"
+      <input type="submit" value="Submit" id="EducationSubmit">
+      {% csrf_token %}
   </div>
+  <center><h1>CV</h1></center>
+  <div class="Personaldetailsd">
+  <center>
+
+    <h4 id='namedis'>Insert name here</h4>
+    <h4 id='emaildis'>Insert email here</h4>
+    <h4 id='numberdis'>Insert number here</h4>
+  </center>
+  <br><br><br>
+  </div>
+  <div class="Personalprofiled">
+  <p padding: 5 7em 2em 0; id='profiledis'>Insert personal profile here</p>
+
+  <br><br><br>
+  </div>
+  <div class="SkillsD">
+  <h3>Skills</h3>
+  <table id="skillstable">
+    {% for skillitem in skillitems %}
+      <tr><td><li>{{ skillitem.text }}<td></tr>
+    {% endfor %}
+
+  </table>
+  <br><br><br>
+  </div>
+  <div class="achievmentsd">
+  <h3>Achievements</h3>
+  <table id="achtable">
+    <tr><td><li>Insert achievment 1 here</td></tr>
+    <tr><td><li>Insert achievment 2 here</td></tr>
+  </table>
+  <br><br><br>
+  </div>
+  <div class="Jobsd">
+  <h3>Work experience</h3>
+  <br>
+  <h4 id='jobtitled'>Insert job title here</h4>
+  <h4 id='jobcompd'>Insert company namehere</h4>
+  <p id='jobdatesd'><ins>Insert start date</ins>   -    <ins>Insert end date</ins></p>
+  <p id='jobdetailsd'>Insert job description details here</p>
+  <br><br><br>
+  </div>
+  <div class="Education d">
+  <h3>Education</h3>
+  <h4 id='schoold'> Insert name of school here</h4>
+  <p id='schooldatesd'><ins>insert start date</ins>   -   <ins>Insert end date here</ins></p>
+  <p id='schooldetailsd'>Insert details of the school here</p>
+  </div>
+
 
 </body>
 </html>
