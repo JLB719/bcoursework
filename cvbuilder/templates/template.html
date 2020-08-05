@@ -130,7 +130,7 @@
   <h3>Skills</h3>
   <table id="skillstable">
     {% for skillitem in skillitems %}
-      <tr><td><li>{{ skillitem.text }}<td></tr>
+      <tr><td><li>{{skillitem.text}}<td></tr>
     {% endfor %}
 
   </table>
@@ -139,8 +139,11 @@
   <div class="achievmentsd">
   <h3>Achievements</h3>
   <table id="achtable">
-    <tr><td><li>Insert achievment 1 here</td></tr>
-    <tr><td><li>Insert achievment 2 here</td></tr>
+    {% for achitem in achitems %}
+      <tr><td><li>{{achitem.text}}<td></tr>
+    {% endfor %}
+
+
   </table>
   <br><br><br>
   </div>
