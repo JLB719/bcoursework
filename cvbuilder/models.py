@@ -6,3 +6,6 @@ class SkillItem(models.Model) :
 
 class AchItem(models.Model) :
     text = models.TextField(default='')
+
+class NameItem(models.Model) :
+    text = models.TextField(default='')
