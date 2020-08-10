@@ -85,7 +85,7 @@
       <p id="jobdesq">Enter the job description details</p>
       <textarea rows="5" cols="60" name="description" id="description"></textarea><br>
       {% csrf_token %}
-      <input type="submit" value="Submit" id="WorkExperience">
+      <input type="submit" value="Submit" id="WorkExperience" name="WorkSubmit">
       {% csrf_token %}
   </div>
   <br>
@@ -108,7 +108,7 @@
       <textarea name="grades" id="grades" rows="8" cols="60"></textarea>
       {% csrf_token %}
       <br>
-      <input type="submit" value="Submit" id="EducationSubmit">
+      <input type="submit" value="Submit" id="EducationSubmit" name="EducationSubmit">
       {% csrf_token %}
   </div>
   <center><h1>CV</h1></center>
@@ -150,17 +150,21 @@
   <div class="Jobsd">
   <h3>Work experience</h3>
   <br>
-  <h4 id='jobtitled'>Insert job title here</h4>
-  <h4 id='jobcompd'>Insert company namehere</h4>
-  <p id='jobdatesd'><ins>Insert start date</ins>   -    <ins>Insert end date</ins></p>
-  <p id='jobdetailsd'>Insert job description details here</p>
+  {% for workitem in workitems %}
+  <h4 id='jobtitled'>{{workitem.role}}</h4>
+  <h4 id='jobcompd'>{{workitem.company}}</h4>
+  <p id='jobdatesd'>{{workitem.startdate}} - {{workitem.enddate}}</p>
+  <p id='jobdetailsd'>{{workitem.description}}</p>
+  {% endfor %}
   <br><br><br>
   </div>
   <div class="Education d">
   <h3>Education</h3>
-  <h4 id='schoold'> Insert name of school here</h4>
-  <p id='schooldatesd'><ins>insert start date</ins>   -   <ins>Insert end date here</ins></p>
-  <p id='schooldetailsd'>Insert details of the school here</p>
+  {% for schoolitem in schoolitems %}
+  <h4 id='schoold'>{{schoolitem.school}}</h4>
+  <p id='schooldatesd'>{{schoolitem.startdate}} - {{schoolitem.enddate}}</p>
+  <p id='schooldetailsd'>{{schoolitem.qualifications}}</p>
+  {% endfor %}
   </div>
 
 
