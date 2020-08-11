@@ -52,10 +52,33 @@
       {% csrf_token %}
   </div>
   <br>
+  <div class="Qualifications">
+    <h3> Qualifications </h3>
+    <form method="POST">
+      <p id="Qualificationquestion"> Enter a professional qualification </p>
+      <input type="text" name="qualification" id="qualification">
+      {% csrf_token %}
+      <input type="submit" value="Submit" id="QualificationS">
+    </form>
+  </div>
+  <br>
+  <div class="Projects">
+    <form method="POST">
+    <p id="ProjectQuestion"> Enter a project name</p>
+    <input type="text" name="projectover" id="projectover">
+    {% csrf_token %}
+    <p id="ProjectDescription"> Enter the description of the project</p>
+    <textarea rows="5" cols="60" name="Projectdes" id="projectdes"></textarea><br>
+    {% csrf_token %}
+    <input type="submit" value="Submit" id="ProjectSub" name="ProjectSubmit">
+    {% csrf_token %}
+  </form>
+  </div>
+  <br>
   <div class="Achievments">
     <h3>Achievments</h3>
     <form method="POST">
-      <p id=Achievmentquestion>Enter an achievment</p>
+      <p id="Achievmentquestion">Enter an achievment</p>
       <input type="text" name="achievement" id="achievment">
       {% csrf_token %}
       <br>
@@ -111,18 +134,30 @@
       <input type="submit" value="Submit" id="EducationSubmit" name="EducationSubmit">
       {% csrf_token %}
   </div>
+  <br>
+  <div class="Notes">
+    <form method="POST">
+      <p id="PostQuestion">Enter any other notes</p>
+      <textarea name="Notes" id="Notes" rows="8" cols="60"></textarea>
+      {% csrf_token %}
+      <input type="submit" value="Submit" id="NotesSubmit" name="NotesSubmit">
+      {% csrf_token %}
+    </form>
+  </div>
+  <br>
+
   <center><h1>CV</h1></center>
   <div class="Personaldetailsd">
   <center>
 
-    <h4 id='namedis'>{{ name_item }}</h4>
-    <h4 id='emaildis'>{{ email_item }}</h4>
-    <h4 id='numberdis'>{{ number_item }}</h4>
+    <h4 id='namedis'>{{ nameitems.text }}</h4>
+    <h4 id='emaildis'>{{ emailitems.text }}</h4>
+    <h4 id='numberdis'>{{ numberitems.text }}</h4>
   </center>
   <br><br><br>
   </div>
   <div class="Personalprofiled">
-  <p padding: 5 7em 2em 0; id='profiledis'>{{ profile_item }}</p>
+  <p padding: 5 7em 2em 0; id='profiledis'>{{ personalitems.text }}</p>
 
   <br><br><br>
   </div>
@@ -136,6 +171,23 @@
   </table>
   <br><br><br>
   </div>
+  <div class = "qualificationsd">
+    <h3>Qualifications</h3>
+    <table id="qualificationstable">
+      {% for x in qualificationitems %}
+       <tr><td><li>{{x.text}}<td></tr>
+      {% endfor %}
+    </table>
+    <br><br><br>
+  </div>
+  <div class="Projectsd">
+    <h3>Projects</h3>
+    {% for x in projectitems %}
+    <h4>{{x.title}}</h4>
+    <p>{{x.description}}</p>
+    {% endfor %}
+    <br><br><br>
+  </div>
   <div class="achievmentsd">
   <h3>Achievements</h3>
   <table id="achtable">
@@ -146,6 +198,7 @@
 
   </table>
   <br><br><br>
+
   </div>
   <div class="Jobsd">
   <h3>Work experience</h3>
@@ -165,6 +218,12 @@
   <p id='schooldatesd'>{{schoolitem.startdate}} - {{schoolitem.enddate}}</p>
   <p id='schooldetailsd'>{{schoolitem.qualifications}}</p>
   {% endfor %}
+  <br><br><br>
+  </div>
+  <div class="NotesD">
+    {% for x in noteitems %}
+    <p id="notesdetails">{{x.note}}</p>
+    {% endfor %}
   </div>
 
 
