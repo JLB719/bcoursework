@@ -12,16 +12,21 @@
     <form method="POST">
       <p id="namequestion">Enter your full name</p>
 
-      <input type="text" name="name" id="name">
+      <input type="text" name="name" id="namequest">
       {% csrf_token %}
+    </form>
       <br>
+      <form method="POST">
       <p id="emailquestion">Enter your email</p>
       <input type="email" name="email" id="email">
       {% csrf_token %}
+    </form>
       <br>
+      <form method="POST">
       <p id="telquestion">Enter your telephone number</p>
       <input type="tel" name="number" id="number">
       {% csrf_token %}
+    </form>
       <br>
 
     </form>
@@ -94,11 +99,11 @@
       {% csrf_token %}
       <br>
       <p id="startdatewq">Enter the start date of the job</p>
-      <input type="date" name="startdatew" id="startdatew">
+      <input type="text" name="startdatew" id="startdatew">
       {% csrf_token %}
       <br>
       <p id="enddatewq">Enter the date you finished the role</p>
-      <input type="date" name="enddatew" id="enddatew">
+      <input type="text" name="enddatew" id="enddatew">
       {% csrf_token %}
       <br>
       <p id="jobdesq">Enter the job description details</p>
@@ -116,14 +121,14 @@
       {% csrf_token %}
       <br>
       <p id="startdatesq">Enter the date you started at the school</p>
-      <input type="date" name="startdates" id="startdates">
+      <input type="text" name="startdates" id="startdates">
       {% csrf_token %}
       <br>
       <p id="enddatesq">Enter the date you finished at the school</p>
-      <input type="date" name="enddates" id="enddates">
+      <input type="text" name="enddates" id="enddates">
       {% csrf_token %}
       <br>
-      <p id="gradesq">Enter grades obtained</p>
+      <p id="gradesq">Enter the grades obtained</p>
       <textarea name="grades" id="grades" rows="8" cols="60"></textarea>
       {% csrf_token %}
       <br>
@@ -149,8 +154,8 @@
   <center>
 
     <h4 id='namedis'>Name: {{ nameitems.text }}</h4>
-    <h4 id='emaildis'>Number: {{ emailitems.text }}</h4>
-    <h4 id='numberdis'>Email: {{ numberitems.text }}</h4>
+    <h4 id='emaildis'>Email: {{ emailitems.text }}</h4>
+    <h4 id='numberdis'>Number: {{ numberitems.text }}</h4>
   </center>
   <br><br><br>
   </div>

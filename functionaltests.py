@@ -24,28 +24,32 @@ class NewVisitorTest(unittest.TestCase) :
         header_text = self.browser.find_element_by_tag_name('h1')
 
         #invited to enter name
-        inputboxname=self.browser.find_element_by_id('name')
+        inputboxname=self.browser.find_element_by_id('namequest')
         self.assertEqual(self.browser.find_element_by_id('namequestion').text, 'Enter your full name')
         #types James Bartlett into text box
         inputboxname.send_keys('James Bartlett')
 
-        #invited to enter mobile number into text box
-        inputboxnumber=self.browser.find_element_by_id('number')
-        self.assertEqual(self.browser.find_element_by_id('telquestion').text, 'Enter your telephone number')
-        #types 111111111 into text text box
-        inputboxnumber.send_keys('111111111')
+
         #invited to enter email into text box
         inputboxemail = self.browser.find_element_by_id('email')
         self.assertEqual(self.browser.find_element_by_id('emailquestion').text, "Enter your email")
         # enters james@gmail.com
         inputboxemail.send_keys('james@gmail.com')
 
-        submitpersonaldetails = self.browser.find_element_by_id('details')
-        submitpersonaldetails.click()
+        #invited to enter mobile number into text box
+        inputboxnumber=self.browser.find_element_by_id('number')
+        self.assertEqual(self.browser.find_element_by_id('telquestion').text, 'Enter your telephone number')
+        #types 111111111 into text text box
+        inputboxnumber.send_keys('111111111')
+
+        inputboxname.send_keys(Keys.ENTER)
+        inputboxemail.send_keys(Keys.ENTER)
+        inputboxnumber.send_keys(Keys.ENTER)
+        time.sleep(10)
         # when hits enter name, email and number are displayed
-        self.assertEqual(self.browser.find_element_by_id('namedis').text, 'James Bartlett')
-        self.assertEqual(self.browser.find_element_by_id('emaildis').text, 'james@gmail.com')
-        self.assertEqual(self.browser.find_element_by_id('numberdis').text, '111111111')
+        self.assertEqual(self.browser.find_element_by_id('namedis').text, 'Name: James Bartlett')
+        self.assertEqual(self.browser.find_element_by_id('emaildis').text, 'Email: james@gmail.com')
+        self.assertEqual(self.browser.find_element_by_id('numberdis').text, 'Number: 111111111')
         #will need to decide how i want it displayed
         #Personal profile
 
@@ -66,6 +70,7 @@ class NewVisitorTest(unittest.TestCase) :
         inputboxskills.send_keys('Java')
         inputboxskills.send_keys(Keys.ENTER)
         #Types Java
+        time.sleep(5)
 
         # Upon enter java is displayed underskills
         self.check_in_table('Java', 'skillstable')
@@ -76,9 +81,13 @@ class NewVisitorTest(unittest.TestCase) :
         inputboxskills.send_keys('Teamwork')
         inputboxskills.send_keys(Keys.ENTER)
         # Upon enter both skills entries are displayed
-        self.check_in_table('Java', 'skillstable')
+        time.sleep(2)
+        # self.fail('Checking if it gets to this point')
+        # self.check_in_table('Java', 'skillstable')
+
         self.check_in_table('Teamwork', 'skillstable')
         #Achievments
+        time.sleep(5)
 
         # Invited to enter an achievment
         inputboxachievments=self.browser.find_element_by_id('achievment')
@@ -88,6 +97,7 @@ class NewVisitorTest(unittest.TestCase) :
         inputboxachievments.send_keys('1st place in hackathon')
         # Upon enter displays ahcivment
         inputboxachievments.send_keys(Keys.ENTER)
+        time.sleep(2)
         self.check_in_table('1st place in hackathon', 'achtable')
         # Invited to enter another achievent
         inputboxachievments=self.browser.find_element_by_id('achievment')
@@ -96,8 +106,9 @@ class NewVisitorTest(unittest.TestCase) :
 
         # upon enter displays both ahcivments
         inputboxachievments.send_keys(Keys.ENTER)
+        time.sleep(2)
         self.check_in_table('1st place in hackathon', 'achtable')
-
+        time.sleep(2)
         self.check_in_table('a levels', 'achtable')
         #Work experience
 
@@ -131,11 +142,12 @@ class NewVisitorTest(unittest.TestCase) :
         submitworkexp = self.browser.find_element_by_id('WorkExperience')
         submitworkexp.click()
         #Upon enter company, role, dates and job description are displayed
-        self.assertEqual(self.browser.find_element_by_id('jobtitled').text, "student ambassador")
-        self.assertEqual(self.browser.find_element_by_id('jobcomd').text, "University of Birmingham")
-        self.assertEqual(self.browser.find_element_by_id('jobdatesd').text, "01/01/2019-03/08/2020")
+        self.assertEqual(self.browser.find_element_by_id('jobtitled').text, "Job Role: student ambassador")
+        self.assertEqual(self.browser.find_element_by_id('jobcompd').text, "Company: University of Birmingham")
+        time.sleep(2)
+        self.assertEqual(self.browser.find_element_by_id('jobdatesd').text, "Dates: 01/01/2019 - 03/08/2020")
         self.assertEqual(self.browser.find_element_by_id('jobdetailsd').text, "Responsible for showing students round building making them feel welcome and setting up events")
-
+        time.sleep(1)
         #Education
 
         #Invited to enter place of learning
@@ -165,9 +177,11 @@ class NewVisitorTest(unittest.TestCase) :
         # Upon enter school, dates and grades are displayed
         submiteducation=self.browser.find_element_by_id('EducationSubmit')
         submiteducation.click()
-        self.assertEqual(self.browser.find_element_by_id('schoold').text, "Woodhouse College")
-        self.assertEqual(self.browser.find_element_by_id('schooldatesd'), "01/09/2016-01/07/2018")
-        self.assertEqual(self.browser.find_element_by_id('schooldetailsd'), 'Maths A* Further Maths B Georgraphy A')
+        self.assertEqual(self.browser.find_element_by_id('schoold').text, "School/College: Woodhouse College")
+        time.sleep(2)
+        self.assertEqual(self.browser.find_element_by_id('schooldatesd').text, "01/09/2016 - 01/07/2018")
+        time.sleep(2)
+        self.assertEqual(self.browser.find_element_by_id('schooldetailsd').text, 'Maths A* Further Maths B Georgraphy A')
 
 	# def test_can_edit_a_cv(self) :
 
