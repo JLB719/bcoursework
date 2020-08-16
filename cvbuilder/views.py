@@ -8,38 +8,38 @@ def home_page(request):
     if request.method == 'POST' :
         if request.POST.get('skill', ''):
             SkillItem.objects.create(text=request.POST['skill'])
-            return redirect('/')
+            return redirect('cv/')
 
         elif request.POST.get('achievement', '') :
             AchItem.objects.create(text=request.POST['achievement'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('WorkSubmit', '') :
             WorkExperience.objects.create(company=request.POST['placeofwork'], role=request.POST['role'], startdate=request.POST['startdatew'], enddate=request.POST['enddatew'], description=request.POST['description'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('EducationSubmit', '') :
             School.objects.create(school= request.POST['school'], startdate=request.POST['startdates'], enddate=request.POST['enddates'], qualifications=request.POST['grades'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('name', '') :
             NameItem.objects.create(text=request.POST['name'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('email', '') :
             EmailItem.objects.create(text=request.POST['email'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('number', '') :
             NumberItem.objects.create(text=request.POST['number'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('personalprof', '') :
             PersonalProfileItem.objects.create(text=request.POST['personalprof'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('qualification', '') :
             Qualifications.objects.create(text=request.POST['qualification'])
             return redirect('/')
         elif request.POST.get('ProjectSubmit', '') :
             Projects.objects.create(title=request.POST['projectover'], description=request.POST['Projectdes'])
-            return redirect('/')
+            return redirect('cv/')
         elif request.POST.get('Notes','') :
             Notes.objects.create(note=request.POST['Notes'])
-            return redirect('/')
+            return redirect('cv/')
 
 
 

@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from cvbuilder import views
+from cvbuilder import views as cvviews
+from blog import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home_page, name='home'),
+    url('admin/', admin.site.urls),
+    url('cv/', cvviews.home_page, name='home'),
+    url('', views.post_list, name='post_list'),
+    url('post/<int:pk>/', views.post_detail, name='post_detail'),
+    url('post/new/', views.post_new, name='post_new'),
+    url('post/<int:pk>/edit/', views.post_edit, name='post_edit')
+
 ]
